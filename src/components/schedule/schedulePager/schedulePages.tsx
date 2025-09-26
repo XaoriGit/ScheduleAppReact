@@ -1,20 +1,19 @@
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/pagination";
+import type { ScheduleDayDTO } from "@/api";
 
-export const SchedulePager = () => {
-  const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+interface SchedulePagerProps {
+  days: ScheduleDayDTO[];
+}
+
+export const SchedulePager = ({ days }: SchedulePagerProps) => {
   return (
-    <Swiper
-      modules={[Pagination]}
-      pagination={{
-        clickable: true,
-        horizontalClass: "swiper-pagination-horizontal",
-      }}
-    >
-      {pages.map((page) => (
+    <Swiper modules={[Pagination]}>
+      {days.map((day) => (
         <SwiperSlide>
-          <div className="schedule_list">{page}</div>
+          <div className="schedule_list">1</div>
         </SwiperSlide>
       ))}
     </Swiper>

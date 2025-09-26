@@ -1,10 +1,10 @@
-import type { ScheduleDay } from "@/api"
+import type { ScheduleDayDTO } from "@/api"
 import styles from './weekDayRow.module.scss'
 import { formatWeekDay } from "@/utils"
 
 interface WeekDayRowProps {
     selectedIndex: number
-    days: ScheduleDay[]
+    days: ScheduleDayDTO[]
     onDayClick: (index: number) => void
 }
 

@@ -24,7 +24,7 @@ export const HomePage = () => {
             selectedIndex={selectedIndex}
             onDayClick={(index) => setSelectedIndex(index)}
           />
-          <SchedulePager />
+          <SchedulePager days={data!.schedules} />
         </>
       )}
 

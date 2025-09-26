@@ -1,22 +1,22 @@
 export interface ScheduleDataResponse {
     client_name: string
     last_update: string
-    schedules: ScheduleDay[]
+    schedules: ScheduleDayDTO[]
 }
 
-export interface ScheduleDay {
+export interface ScheduleDayDTO {
     date: string
     week_day: number
-    lessons: Lesson[]
+    lessons: LessonDTO[]
 }
 
-export interface Lesson {
+export interface LessonDTO {
     number: number
     time: string
-    items: LessonItem[]
+    items: LessonItemDTO[]
 }
 
-export interface LessonItem {
+export interface LessonItemDTO {
     title: string
     type: string
     partner: string

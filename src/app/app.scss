@@ -1,8 +1,22 @@
-@use './theme.scss' as *; 
+@use "./theme.scss" as *;
 
 body {
-    background-color: var(--surface);
-    color: var(--on-surface);
-    padding: 16px;
-    height: calc(100vh - 32px);
+  background-color: var(--surface);
+  color: var(--on-surface);
+  padding: 16px;
+  height: calc(100vh - 32px);
+}
+#root {
+  height: 100%;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
