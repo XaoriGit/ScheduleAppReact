@@ -1,0 +1,22 @@
+.tab_row {
+    display: flex;
+    gap: 8px;
+    overflow-x: scroll;
+
+    &__tab {
+        @include font-label-large;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        border: 0;
+        background-color: var(--surface-variant);
+        
+        color: var(--on-surface-variant);
+
+        transition: all 500ms ease;
+
+        &_active {
+            background-color: var(--primary);
+            color: var(--on-primary);
+        }
+    }
+}

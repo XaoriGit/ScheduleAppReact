@@ -1,0 +1,13 @@
+.swiper {
+  height: 100%; // или фиксированное, например 100vh
+}
+
+.swiper-slide {
+  display: flex;        // чтобы контент центрировался или растягивался
+  height: 100%;
+}
+
+.schedule_list {
+    height: 100%;
+    background-color: var(--error);
+}

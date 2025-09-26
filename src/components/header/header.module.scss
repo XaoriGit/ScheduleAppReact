@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__info {
+        display: flex;
+        gap: 4px;
+
+        & h1 {
+            @include font-title-large;
+            color: var(--on-surface);
+        }
+        & p {
+            @include font-label-large;
+            color: var(--outline);
+        }
+    }
+}
