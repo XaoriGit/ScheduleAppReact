@@ -1,2 +1,2 @@
-export * from './header';
-export * from './schedule';
+export * from "./header"
+export * from "./schedule"

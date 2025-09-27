@@ -1,2 +1,2 @@
-export * from './schedulePager/schedulePages';
-export * from './weekDayRow/weekDayRow'
+export * from "./schedulePager/schedulePages"
+export * from "./weekDayRow/weekDayRow"
