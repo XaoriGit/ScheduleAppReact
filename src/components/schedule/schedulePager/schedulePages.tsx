@@ -1,18 +1,39 @@
 import { Pagination } from "swiper/modules"
-import { Swiper, SwiperSlide } from "swiper/react"
+import { Swiper, SwiperSlide, type SwiperRef } from "swiper/react"
 import type { ScheduleDayDTO } from "@/api"
 import { Lesson } from "../lesson/lesson"
 import styles from "./schedulePager.module.scss"
-import "swiper/css"
-import "swiper/css/pagination"
+import "swiper/swiper.css"
+import { useEffect, useRef } from "react"
 
 interface SchedulePagerProps {
     days: ScheduleDayDTO[]
+    selectedIndex: number
+    setSelectedIndex: (index: number) => void
 }
 
-export const SchedulePager = ({ days }: SchedulePagerProps) => {
+export const SchedulePager = ({
+    days,
+    selectedIndex,
+    setSelectedIndex,
+}: SchedulePagerProps) => {
+    const swiperRef = useRef<null | SwiperRef>(null)
+
+    useEffect(() => {
+        if (swiperRef.current && swiperRef.current.swiper) {
+            swiperRef.current.swiper.slideTo(selectedIndex)
+        }
+    }, [selectedIndex])
+
     return (
-        <Swiper modules={[Pagination]}>
+        <Swiper
+            modules={[Pagination]}
+            spaceBetween={16}
+            onSlideChange={(swiper) => setSelectedIndex(swiper.activeIndex)}
+            initialSlide={selectedIndex}
+            ref={swiperRef}
+            pagination={{ clickable: true }}
+        >
             {days.map((day) => (
                 <SwiperSlide>
                     <div className={styles.schedule_list}>

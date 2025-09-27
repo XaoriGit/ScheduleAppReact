@@ -6,12 +6,26 @@ $font-primary: 'Roboto', sans-serif;
     font-family: $font-primary;
     font-size: 22px;
     font-weight: 400;
-    line-height: 170%;
+    line-height: 150%;
+}
+
+@mixin font-title-medium {
+    font-family: $font-primary;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 150%;
 }
 
 @mixin font-label-large {
     font-family: $font-primary;
     font-size: 14px;
     font-weight: 500;
-    line-height: 170%;
+    line-height: 150%;
+}
+
+@mixin font-body-medium {
+    font-family: $font-primary;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 150%;
 }

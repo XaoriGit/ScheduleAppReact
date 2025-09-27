@@ -12,5 +12,5 @@ export function formatWeekDay(weekDay: number, date: string, full: boolean) {
     const weekday = WEEK_DAYS[weekDay]
     const dayNum = new Date(date).getDate()
 
-    return full ? `${weekday.full}, ${dayNum}` : `${weekday.short}, ${dayNum}`
+    return [full ? `${weekday.full}` : `${weekday.short}`, dayNum]
 }
