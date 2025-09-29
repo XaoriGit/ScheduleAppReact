@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react-swc"
 import tsconfigPaths from "vite-tsconfig-paths"
 import path from "path"
 import { VitePWA } from "vite-plugin-pwa"
+import svgr from 'vite-plugin-svgr'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -50,6 +51,7 @@ export default defineConfig({
             },
         }),
         tsconfigPaths(),
+        svgr(),
     ],
     resolve: {
         alias: {

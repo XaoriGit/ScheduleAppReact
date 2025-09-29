@@ -34,11 +34,12 @@ export const SchedulePager = ({
             ref={swiperRef}
             pagination={{ clickable: true }}
         >
-            {days.map((day) => (
-                <SwiperSlide>
+            {days.map((day, index) => (
+                <SwiperSlide key={index}>
                     <div className={styles.schedule_list}>
-                        {day.lessons.map((lesson) => (
+                        {day.lessons.map((lesson, index) => (
                             <Lesson
+                                key={index}
                                 number={lesson.number}
                                 time={lesson.time}
                                 items={lesson.items}

@@ -25,7 +25,7 @@ export const WeekDayRow = ({
             if (activeTab) {
                 activeTab.scrollIntoView({
                     behavior: "smooth",
-                    inline: "start", // можно 'nearest' или 'start'
+                    inline: "start",
                     block: "nearest",
                 })
             }

@@ -10,7 +10,7 @@ export const scheduleApi = {
                 client_name: clientName,
             },
             headers: {
-                "X-CLIENT-TIME": new Date(2023, 3, 27).toISOString(),
+                "X-CLIENT-TIME": new Date().toISOString(),
             },
         })
         return res.data

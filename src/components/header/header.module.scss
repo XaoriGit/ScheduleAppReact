@@ -3,6 +3,16 @@
     justify-content: space-between;
     align-items: center;
 
+    &_loading {
+        color: var(--outline);
+    }
+    &_error {
+        color: var(--error);
+    }
+    &_success {
+        color: var(--primary);
+    }
+
     &__info {
         display: flex;
         gap: 4px;
@@ -13,7 +23,31 @@
         }
         & p {
             @include font-label-large;
-            color: var(--outline);
         }
+    }
+
+    &__left_content {
+        cursor: pointer;
+        transition: all 500ms ease;
+        &:active {
+            opacity: 0.6;
+        }
+    }
+
+    &__textWrapper {
+        display: inline-block;
+        transition:
+            opacity 150ms ease-out,
+            transform 250ms ease-in-out;
+    }
+
+    .fadeOut {
+        opacity: 0;
+        transform: scaleX(0.8);
+    }
+
+    .fadeIn {
+        opacity: 1;
+        transform: scaleX(1);
     }
 }
