@@ -7,3 +7,10 @@ export const useSchedule = (clientName: string) => {
         queryFn: () => scheduleApi.getSchedule(clientName),
     })
 }
+
+export const useClients = () => {
+    return useQuery({
+        queryKey: ["schedule/clients"],
+        queryFn: () => scheduleApi.getClients(),
+    })
+}

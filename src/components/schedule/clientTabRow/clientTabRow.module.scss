@@ -1,0 +1,36 @@
+.tabs {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--surface-variant);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tab {
+    @include font-title-small;
+    color: var(--on-surface-variant);
+    text-align: center;
+    padding: 18px 0;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+
+    &.active {
+        color: var(--on-surface);
+    }
+}
+
+.indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: var(--primary);
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
