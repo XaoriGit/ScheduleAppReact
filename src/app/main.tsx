@@ -3,9 +3,6 @@ import { createRoot } from "react-dom/client"
 import "./main.css"
 import App from "./app.tsx"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import { registerSW } from "virtual:pwa-register"
-
-registerSW({immediate: true})
 
 const queryClient = new QueryClient()
 
