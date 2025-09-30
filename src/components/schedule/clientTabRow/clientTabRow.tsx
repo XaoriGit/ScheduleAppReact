@@ -1,20 +1,25 @@
-import { useState } from "react"
 import styles from "./clientTabRow.module.scss"
 
-export default function ClientTabRow() {
-    const [active, setActive] = useState<"group" | "teacher">("group")
+interface ClientTabRowProps {
+    selected: number
+    setSelected: (index: number) => void
+}
 
+export default function ClientTabRow({
+    selected,
+    setSelected,
+}: ClientTabRowProps) {
     return (
         <div className={styles.tabs}>
             <button
-                className={`${styles.tab} ${active === "group" ? styles.active : ""}`}
-                onClick={() => setActive("group")}
+                className={`${styles.tab} ${selected == 0 ? styles.active : ""}`}
+                onClick={() => setSelected(0)}
             >
                 Группа
             </button>
             <button
-                className={`${styles.tab} ${active === "teacher" ? styles.active : ""}`}
-                onClick={() => setActive("teacher")}
+                className={`${styles.tab} ${selected == 1 ? styles.active : ""}`}
+                onClick={() => setSelected(1)}
             >
                 Преподаватель
             </button>
@@ -22,9 +27,7 @@ export default function ClientTabRow() {
                 className={styles.indicator}
                 style={{
                     transform:
-                        active === "group"
-                            ? "translateX(0%)"
-                            : "translateX(100%)",
+                        selected == 0 ? "translateX(0%)" : "translateX(100%)",
                 }}
             />
         </div>

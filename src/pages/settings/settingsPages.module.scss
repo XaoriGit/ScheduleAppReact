@@ -4,3 +4,19 @@
     gap: 16px;
     height: 100%;
 }
+
+.client_list {
+    overflow-x: auto;
+
+    &__item {
+        @include font-body-large;
+        color: var(--on-surface);
+        border-radius: 12px;
+        padding: 16px 16px;
+        transition: all 200ms ease;
+
+        &:active {
+            background-color: var(--surface-variant);
+        }
+    }
+}

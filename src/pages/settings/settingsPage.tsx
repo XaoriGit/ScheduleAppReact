@@ -4,18 +4,42 @@ import { FilledTextField, Header } from "@/components"
 import CancelSvg from "@/assets/ic_cancel.svg?react"
 import { useNavigate } from "react-router-dom"
 import ClientTabRow from "@/components/schedule/clientTabRow/clientTabRow"
-import { useState } from "react"
+import { useMemo, useState } from "react"
+import { useLocalStorage } from "@/hooks/useLocalStorage"
 
 export const SettingsPage = () => {
     const navigate = useNavigate()
     const { data, isLoading, error } = useClients()
     const [value, setValue] = useState("")
+    const [selectedClientTab, setSelectedClientTab] = useState(0)
+    const [_, setSelectedClient] = useLocalStorage<string | null>(
+        "client",
+        null,
+    )
 
     const status: "error" | "loading" | "success" = error
         ? "error"
         : isLoading
           ? "loading"
           : "success"
+
+    const filteredList = useMemo(() => {
+        if (!data) return []
+
+        const query = value.trim().toLowerCase()
+
+        if (query.length > 0) {
+            const groups = data.groups.filter((g) =>
+                g.toLowerCase().includes(query),
+            )
+            const teachers = data.teachers.filter((t) =>
+                t.toLowerCase().includes(query),
+            )
+            return [...groups, ...teachers]
+        } else {
+            return selectedClientTab === 0 ? data.groups : data.teachers
+        }
+    }, [data, value, selectedClientTab])
 
     return (
         <div className={styles.main}>
@@ -26,12 +50,29 @@ export const SettingsPage = () => {
                 rightContent={<CancelSvg className="icon" />}
                 onRightContent={() => navigate("/")}
             />
-            <ClientTabRow />
+            <ClientTabRow
+                selected={selectedClientTab}
+                setSelected={(index) => setSelectedClientTab(index)}
+            />
             <FilledTextField
                 label="Введите группу или фамилию"
                 value={value}
                 onChange={setValue}
             />
+            <ul className={styles.client_list}>
+                {filteredList.map((item, index) => (
+                    <li
+                        className={styles.client_list__item}
+                        onClick={() => {
+                            setSelectedClient(item)
+                            navigate("/")
+                        }}
+                        key={index}
+                    >
+                        {item}
+                    </li>
+                ))}
+            </ul>
         </div>
     )
 }
