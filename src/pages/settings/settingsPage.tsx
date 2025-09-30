@@ -1,11 +1,11 @@
 import { useClients } from "@/api"
 import styles from "./settingsPages.module.scss"
-import { FilledTextField, Header } from "@/components"
+import { CircleLoader, FilledTextField, Header } from "@/components"
 import CancelSvg from "@/assets/ic_cancel.svg?react"
 import { useNavigate } from "react-router-dom"
 import ClientTabRow from "@/components/schedule/clientTabRow/clientTabRow"
 import { useMemo, useState } from "react"
-import { useLocalStorage } from "@/hooks/useLocalStorage"
+import { useLocalStorage } from "@/hooks"
 
 export const SettingsPage = () => {
     const navigate = useNavigate()
@@ -59,20 +59,24 @@ export const SettingsPage = () => {
                 value={value}
                 onChange={setValue}
             />
-            <ul className={styles.client_list}>
-                {filteredList.map((item, index) => (
-                    <li
-                        className={styles.client_list__item}
-                        onClick={() => {
-                            setSelectedClient(item)
-                            navigate("/")
-                        }}
-                        key={index}
-                    >
-                        {item}
-                    </li>
-                ))}
-            </ul>
+            {isLoading ? (
+                <CircleLoader />
+            ) : (
+                <ul className={styles.client_list}>
+                    {filteredList.length > 0 ? filteredList.map((item, index) => (
+                        <li
+                            className={styles.client_list__item}
+                            onClick={() => {
+                                setSelectedClient(item)
+                                navigate("/")
+                            }}
+                            key={index}
+                        >
+                            {item}
+                        </li>
+                    )) : <div className={styles.client_list_empty}>Ничего не найдено</div>}
+                </ul>
+            )}
         </div>
     )
 }

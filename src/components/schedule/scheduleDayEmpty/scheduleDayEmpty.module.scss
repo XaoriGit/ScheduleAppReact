@@ -1,0 +1,23 @@
+.empty { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: auto auto;
+    gap: 16px;
+
+    &__image {
+        @include font-display-medium;
+        color: var(--secondary);
+    }
+
+    &__head {
+        @include font-title-medium;
+        color: var(--secondary);
+    }
+    &__info {
+        @include font-body-medium;
+        color: var(--on-surface);
+    }
+}

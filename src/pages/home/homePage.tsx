@@ -1,11 +1,11 @@
 import { useSchedule } from "@/api"
-import { Header, SchedulePager } from "@/components"
+import { CircleLoader, Header, SchedulePager } from "@/components"
 import { WeekDayRow } from "@/components/schedule/weekDayRow/weekDayRow"
 import { useState } from "react"
 import styles from "./homePage.module.scss"
 import SettingsSvg from "@/assets/ic_settings.svg?react"
 import { useNavigate } from "react-router-dom"
-import { useLocalStorage } from "@/hooks/useLocalStorage"
+import { useLocalStorage } from "@/hooks"
 
 export const HomePage = () => {
     const [selectedClient, _] = useLocalStorage<string>(
@@ -36,7 +36,7 @@ export const HomePage = () => {
                 onRightContent={() => navigate("/settings")}
             />
             {isLoading ? (
-                "Загрузка..."
+                <CircleLoader />
             ) : (
                 <>
                     <WeekDayRow
