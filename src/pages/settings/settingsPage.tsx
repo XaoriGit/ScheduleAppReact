@@ -63,18 +63,24 @@ export const SettingsPage = () => {
                 <CircleLoader />
             ) : (
                 <ul className={styles.client_list}>
-                    {filteredList.length > 0 ? filteredList.map((item, index) => (
-                        <li
-                            className={styles.client_list__item}
-                            onClick={() => {
-                                setSelectedClient(item)
-                                navigate("/")
-                            }}
-                            key={index}
-                        >
-                            {item}
-                        </li>
-                    )) : <div className={styles.client_list_empty}>Ничего не найдено</div>}
+                    {filteredList.length > 0 ? (
+                        filteredList.map((item, index) => (
+                            <li
+                                className={styles.client_list__item}
+                                onClick={() => {
+                                    setSelectedClient(item)
+                                    navigate("/")
+                                }}
+                                key={index}
+                            >
+                                {item}
+                            </li>
+                        ))
+                    ) : (
+                        <div className={styles.client_list_empty}>
+                            Ничего не найдено
+                        </div>
+                    )}
                 </ul>
             )}
         </div>

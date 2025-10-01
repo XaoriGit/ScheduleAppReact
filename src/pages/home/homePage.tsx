@@ -46,6 +46,7 @@ export const HomePage = () => {
                     />
                     <SchedulePager
                         days={data!.schedules}
+                        last_updated={data!.last_update}
                         selectedIndex={selectedIndex}
                         setSelectedIndex={setSelectedIndex}
                     />
