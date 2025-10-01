@@ -8,10 +8,7 @@ import { useNavigate } from "react-router-dom"
 import { useLocalStorage } from "@/hooks"
 
 export const HomePage = () => {
-    const [selectedClient, _] = useLocalStorage<string>(
-        "client",
-        "",
-    )
+    const [selectedClient, _] = useLocalStorage<string>("client", "")
     const { data, isLoading, error } = useSchedule(selectedClient)
     const [selectedIndex, setSelectedIndex] = useState(0)
     const navigate = useNavigate()
