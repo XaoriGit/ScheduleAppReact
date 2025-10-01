@@ -7,7 +7,11 @@ import ClientTabRow from "@/components/schedule/clientTabRow/clientTabRow"
 import { useMemo, useState } from "react"
 import { useLocalStorage } from "@/hooks"
 
-export const SettingsPage = () => {
+interface SettingsPageProps {
+    callbackOnSelect?: () => void
+}
+
+export const SettingsPage = ({ callbackOnSelect }: SettingsPageProps) => {
     const navigate = useNavigate()
     const { data, isLoading, error } = useClients()
     const [value, setValue] = useState("")
@@ -69,7 +73,11 @@ export const SettingsPage = () => {
                                 className={styles.client_list__item}
                                 onClick={() => {
                                     setSelectedClient(item)
-                                    navigate("/")
+                                    if (callbackOnSelect) {
+                                        callbackOnSelect()
+                                    } else {
+                                        navigate("/")
+                                    }
                                 }}
                                 key={index}
                             >
