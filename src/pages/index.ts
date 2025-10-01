@@ -1,1 +1,2 @@
-export { HomePage } from "./homePage"
+export { HomePage } from "./home/homePage"
+export { SettingsPage } from "./settings/settingsPage"

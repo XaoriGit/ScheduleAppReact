@@ -5,6 +5,7 @@ import { Lesson } from "../lesson/lesson"
 import styles from "./schedulePager.module.scss"
 import "swiper/swiper.css"
 import { useEffect, useRef } from "react"
+import { ScheduleDayEmpty } from "@/components"
 
 interface SchedulePagerProps {
     days: ScheduleDayDTO[]
@@ -37,14 +38,18 @@ export const SchedulePager = ({
             {days.map((day, index) => (
                 <SwiperSlide key={index}>
                     <div className={styles.schedule_list}>
-                        {day.lessons.map((lesson, index) => (
-                            <Lesson
-                                key={index}
-                                number={lesson.number}
-                                time={lesson.time}
-                                items={lesson.items}
-                            />
-                        ))}
+                        {day.lessons.length > 0 ? (
+                            day.lessons.map((lesson, index) => (
+                                <Lesson
+                                    key={index}
+                                    number={lesson.number}
+                                    time={lesson.time}
+                                    items={lesson.items}
+                                />
+                            ))
+                        ) : (
+                            <ScheduleDayEmpty />
+                        )}
                     </div>
                 </SwiperSlide>
             ))}

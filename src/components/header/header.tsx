@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react"
 import type { ReactNode } from "react"
 import styles from "./header.module.scss"
-
 interface HeaderProps {
     title: string
     text?: string
     status: "loading" | "error" | "success"
     rightContent?: ReactNode
+    onRightContent: () => void
 }
 
-export const Header = ({ title, text, status, rightContent }: HeaderProps) => {
+export const Header = ({ title, text, status, rightContent, onRightContent }: HeaderProps) => {
     const [displayedStatus, setDisplayedStatus] = useState(status)
     const [animating, setAnimating] = useState(false)
 
@@ -31,7 +31,7 @@ export const Header = ({ title, text, status, rightContent }: HeaderProps) => {
             case "error":
                 return <p className={styles.header_error}>{text}</p>
             case "success":
-                return <p className={styles.header_success}>для {text}</p>
+                return <p className={styles.header_success}>{text}</p>
         }
     }
 
@@ -41,6 +41,7 @@ export const Header = ({ title, text, status, rightContent }: HeaderProps) => {
                 <div className={styles.header__info}>
                     <h1>{title}</h1>
                     <div
+                        onClick={() => onRightContent()}
                         className={`${styles.header__textWrapper} ${
                             animating ? styles.fadeOut : styles.fadeIn
                         }`}
@@ -49,7 +50,7 @@ export const Header = ({ title, text, status, rightContent }: HeaderProps) => {
                     </div>
                 </div>
                 {rightContent && (
-                    <button className={styles.header__left_content}>
+                    <button className={styles.header__left_content} onClick={() => onRightContent()}>
                         {rightContent}
                     </button>
                 )}

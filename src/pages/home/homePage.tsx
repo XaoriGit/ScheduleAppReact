@@ -1,14 +1,20 @@
 import { useSchedule } from "@/api"
-import { Header, SchedulePager } from "@/components"
+import { CircleLoader, Header, SchedulePager } from "@/components"
 import { WeekDayRow } from "@/components/schedule/weekDayRow/weekDayRow"
 import { useState } from "react"
 import styles from "./homePage.module.scss"
-import SettingsIcon from "@/assets/ic_settings.svg?react"
+import SettingsSvg from "@/assets/ic_settings.svg?react"
+import { useNavigate } from "react-router-dom"
+import { useLocalStorage } from "@/hooks"
 
 export const HomePage = () => {
-    type HeaderStatus = "idle" | "loading" | "error" | "success"
-    const { data, isLoading, error } = useSchedule("ИСР-32")
+    const [selectedClient, _] = useLocalStorage<string>(
+        "client",
+        "",
+    )
+    const { data, isLoading, error } = useSchedule(selectedClient)
     const [selectedIndex, setSelectedIndex] = useState(0)
+    const navigate = useNavigate()
 
     const status: "error" | "loading" | "success" = error
         ? "error"
@@ -21,11 +27,16 @@ export const HomePage = () => {
             <Header
                 title="Расписание"
                 status={status}
-                text={status == "error" ? error?.message : data?.client_name}
-                rightContent={<SettingsIcon className="icon" />}
+                text={
+                    status == "error"
+                        ? error?.message
+                        : `для ${data?.client_name}`
+                }
+                rightContent={<SettingsSvg className="icon" />}
+                onRightContent={() => navigate("/settings")}
             />
             {isLoading ? (
-                "Загрузка..."
+                <CircleLoader />
             ) : (
                 <>
                     <WeekDayRow

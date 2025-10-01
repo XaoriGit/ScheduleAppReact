@@ -17,7 +17,7 @@ export const scheduleApi = {
     },
 
     async getClients(): Promise<ClientsResponse> {
-        const res = await api.post<ClientsResponse>(baseUrl + "/clients")
+        const res = await api.get<ClientsResponse>(baseUrl + "/clients")
         return res.data
     },
 }
