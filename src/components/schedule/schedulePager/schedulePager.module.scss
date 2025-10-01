@@ -7,11 +7,26 @@
     flex-direction: column;
     gap: 16px;
     width: 100%;
+    padding-bottom: 32px;
 
     scrollbar-width: none;
     -ms-overflow-style: none;
 
     &::-webkit-scrollbar {
         display: none;
+    }
+}
+
+.update {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+    @include font-body-medium;
+    color: var(--on-surface);
+
+    &__date {
+        @include font-label-large;
+        color: var(--primary);
     }
 }

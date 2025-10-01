@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react-swc"
 import tsconfigPaths from "vite-tsconfig-paths"
 import path from "path"
 import { VitePWA } from "vite-plugin-pwa"
-import svgr from 'vite-plugin-svgr'
+import svgr from "vite-plugin-svgr"
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -13,8 +13,8 @@ export default defineConfig({
             registerType: "autoUpdate",
             workbox: { globPatterns: ["**/*{html,css,js,ico,png,svg}"] },
             manifest: {
-                theme_color: "#111318",
-                background_color: "#111318",
+                theme_color: "#8936FF",
+                background_color: "#2EC6FE",
                 icons: [
                     {
                         purpose: "maskable",
@@ -29,25 +29,12 @@ export default defineConfig({
                         type: "image/png",
                     },
                 ],
-                screenshots: [
-                    {
-                        src: "/screenshots/desktop.png",
-                        type: "image/png",
-                        sizes: "1502x758",
-                        form_factor: "wide",
-                    },
-                    {
-                        src: "/screenshots/mobile.png",
-                        type: "image/png",
-                        sizes: "1082x2402",
-                        form_factor: "narrow",
-                    },
-                ],
-                orientation: "any",
-                display: "standalone",
+                orientation: "portrait",
+                display: "fullscreen",
+                dir: "ltr",
                 lang: "ru-RU",
-                name: "Расписание КИТЭК",
-                short_name: "Расписание КИТЭК",
+                name: "Расписание КИТЭКа",
+                short_name: "Расписание",
             },
         }),
         tsconfigPaths(),
