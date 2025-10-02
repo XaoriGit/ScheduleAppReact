@@ -19,7 +19,6 @@ export const SchedulePager = ({
     setSelectedIndex,
 }: SchedulePagerProps) => {
     const swiperRef = useRef<null | SwiperRef>(null)
-
     useEffect(() => {
         if (swiperRef.current && swiperRef.current.swiper) {
             swiperRef.current.swiper.slideTo(selectedIndex)

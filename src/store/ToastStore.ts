@@ -1,4 +1,5 @@
 import type { ToastProps } from "@/components/toast/toast"
+import { nanoid } from "nanoid"
 import { create } from "zustand"
 
 interface ToastStore {
@@ -15,8 +16,8 @@ export const useToastStore = create<ToastStore>((set) => ({
             toasts: [
                 ...state.toasts,
                 {
-                    id: crypto.randomUUID(),
-                    duration: toast.duration || 4000,
+                    id: nanoid(),
+                    duration: toast.duration || 3000,
                     ...toast,
                 },
             ],

@@ -15,9 +15,13 @@ function App() {
                     <Route path="/settings" element={<SettingsPage />} />
                 </Routes>
             </BrowserRouter>
-            {toasts.map((toast) => (
-                <Toast key={toast.id} {...toast} />
-            ))}
+            {toasts.length > 0 && (
+                <div className="toast-container">
+                    {toasts.map((toast) => (
+                        <Toast key={toast.id} {...toast} />
+                    ))}
+                </div>
+            )}
         </>
     )
 }

@@ -1,7 +1,10 @@
 import type { LessonDTO } from "@/api"
 import styles from "./lesson.module.scss"
+import { useToastStore } from "@/store/ToastStore"
 
 export const Lesson = ({ number, time, items }: LessonDTO) => {
+    const addToast = useToastStore((toast) => toast.addToast)
+
     return (
         <ul className={styles.lesson}>
             {items.map((item, index) => (
@@ -29,7 +32,7 @@ export const Lesson = ({ number, time, items }: LessonDTO) => {
                                     </span>
                                 )}
                             </div>
-                            <span className={styles.lesson__details__primary}>
+                            <span className={styles.lesson__details__primary} onClick={() => addToast({message: item.partner, type: "info"})}>
                                 {item.partner}
                             </span>
                         </div>

@@ -10,7 +10,7 @@ import { useLocalStorage } from "@/hooks"
 export const HomePage = () => {
     const [selectedClient, _] = useLocalStorage<string>(
         "client",
-        "",
+        "ИСР-32",
     )
     const { data, isLoading, error } = useSchedule(selectedClient)
     const [selectedIndex, setSelectedIndex] = useState(0)
