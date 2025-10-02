@@ -13,8 +13,8 @@ export default defineConfig({
             registerType: "autoUpdate",
             workbox: { globPatterns: ["**/*{html,css,js,ico,png,svg}"] },
             manifest: {
-                theme_color: "#8936FF",
-                background_color: "#2EC6FE",
+                theme_color: "#405F90",
+                background_color: "#F9F9FF",
                 icons: [
                     {
                         purpose: "maskable",
