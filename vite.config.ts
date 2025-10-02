@@ -30,7 +30,7 @@ export default defineConfig({
                     },
                 ],
                 orientation: "portrait",
-                display: "fullscreen",
+                display: "standalone",
                 dir: "ltr",
                 lang: "ru-RU",
                 name: "Расписание КИТЭКа",
