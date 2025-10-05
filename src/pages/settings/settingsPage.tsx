@@ -9,7 +9,7 @@ import { useLocalStorage } from "@/hooks"
 
 interface SettingsPageProps {
     callbackOnSelect?: () => void
-    showCancel: boolean  
+    showCancel?: boolean  
 }
 
 export const SettingsPage = ({ callbackOnSelect, showCancel = true }: SettingsPageProps) => {
