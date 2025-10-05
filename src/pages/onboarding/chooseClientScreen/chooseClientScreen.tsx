@@ -1,16 +1,17 @@
-import Button from "@/components/button/button"
 import type { OnboardingScreenProps } from "../onboardingWrapper/onboardingWrapper"
+import EducationSvg from "@/assets/ic_education.svg?react"
+import styles from "./chooseClientScreen.module.scss"
+import { Button } from "@/components"
 
 export const ChooseClientScreen = ({ onNext }: OnboardingScreenProps) => {
     return (
-        <div>
+        <>
+            <EducationSvg className={styles.education} />
             <div>
-                <div>
-                    <h2>Добро пожаловать!</h2>
-                    <p>Сначала нужно сделать важный выбор</p>
-                    <Button onClick={onNext}>Выбрать расписание</Button>
-                </div>
+                <h2 className={styles.heading}>Добро пожаловать!</h2>
+                <p className={styles.info}>Сначала нужно сделать важный выбор</p>
             </div>
-        </div>
+            <Button size="small" onClick={onNext}>Выбрать расписание</Button>
+        </>
     )
 }

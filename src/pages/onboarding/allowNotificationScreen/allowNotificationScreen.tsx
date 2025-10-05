@@ -1,5 +1,5 @@
+import { Button } from "@/components"
 import type { OnboardingScreenProps } from "../onboardingWrapper/onboardingWrapper"
-import Button from "@/components/button/button"
 import { useState } from "react"
 
 export const AllowNotificationScreen = ({ onNext }: OnboardingScreenProps) => {
