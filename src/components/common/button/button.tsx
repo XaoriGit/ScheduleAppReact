@@ -1,12 +1,12 @@
-import styles from "./Button.module.scss"
+import styles from "./button.module.scss"
 
 export interface ButtonProps
     extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: "primary" | "secondary" | "danger"
-    size?: "small" | "medium" | "large"
+    variant?: "primary"
+    size?: "small" | "medium"
 }
 
-const Button = ({
+export const Button = ({
     children,
     className = "",
     variant = "primary",
@@ -27,4 +27,3 @@ const Button = ({
     )
 }
 
-export default Button

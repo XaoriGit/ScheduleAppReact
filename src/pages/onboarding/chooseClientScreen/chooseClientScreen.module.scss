@@ -1,0 +1,16 @@
+.education {
+    height: 64px;
+    width: 64px;
+    color: var(--primary);
+}
+
+.heading {
+    @include font-title-medium;
+    color: var(--on-surface);
+    text-align: center;
+}
+.info {
+    @include font-body-medium;
+    color: var(--on-surface);
+    text-align: center;
+}

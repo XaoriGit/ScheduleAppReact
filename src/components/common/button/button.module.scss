@@ -1,0 +1,34 @@
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    width: 100%;
+
+
+    &--primary {
+        background-color: var(--primary);
+        color: var(--on-primary);
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:disabled {
+            opacity: 0.1;
+            cursor: not-allowed;
+        }
+    }
+
+    &--small {
+        @include font-label-large;
+        padding: 10px 16px;
+    }
+
+    &--medium {
+        @include font-title-medium;
+        padding: 16px 24px;
+    }
+}

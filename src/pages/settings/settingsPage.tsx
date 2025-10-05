@@ -9,9 +9,10 @@ import { useLocalStorage } from "@/hooks"
 
 interface SettingsPageProps {
     callbackOnSelect?: () => void
+    showCancel: boolean  
 }
 
-export const SettingsPage = ({ callbackOnSelect }: SettingsPageProps) => {
+export const SettingsPage = ({ callbackOnSelect, showCancel = true }: SettingsPageProps) => {
     const navigate = useNavigate()
     const { data, isLoading, error } = useClients()
     const [value, setValue] = useState("")
@@ -51,7 +52,7 @@ export const SettingsPage = ({ callbackOnSelect }: SettingsPageProps) => {
                 title="Расписание"
                 status={status}
                 text={status == "error" ? error?.message : "Выбор расписания"}
-                rightContent={<CancelSvg className="icon" />}
+                rightContent={showCancel && <CancelSvg className="icon" />}
                 onRightContent={() => navigate("/")}
             />
             <ClientTabRow
