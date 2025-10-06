@@ -1,3 +1,13 @@
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0px 16px;
+}
+
 .education {
     height: 64px;
     width: 64px;

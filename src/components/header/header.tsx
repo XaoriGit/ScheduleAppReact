@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import type { ReactNode } from "react"
 import styles from "./header.module.scss"
 interface HeaderProps {
+    className?: string
     title: string
     text?: string
     status: "loading" | "error" | "success"
@@ -9,7 +10,7 @@ interface HeaderProps {
     onRightContent: () => void
 }
 
-export const Header = ({ title, text, status, rightContent, onRightContent }: HeaderProps) => {
+export const Header = ({ className = "", title, text, status, rightContent, onRightContent }: HeaderProps) => {
     const [displayedStatus, setDisplayedStatus] = useState(status)
     const [animating, setAnimating] = useState(false)
 
@@ -37,7 +38,7 @@ export const Header = ({ title, text, status, rightContent, onRightContent }: He
 
     return (
         <header>
-            <div className={styles.header}>
+            <div className={styles.header + " " + className}>
                 <div className={styles.header__info}>
                     <h1>{title}</h1>
                     <div
