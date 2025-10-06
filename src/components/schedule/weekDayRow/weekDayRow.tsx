@@ -23,10 +23,12 @@ export const WeekDayRow = ({
                 `.${styles.tab_row__tab_active}`,
             ) as HTMLElement | null
             if (activeTab) {
-                activeTab.scrollIntoView({
+                const offset = 16
+                const scrollLeftTarget = activeTab.offsetLeft - offset
+
+                container.scrollTo({
+                    left: scrollLeftTarget,
                     behavior: "smooth",
-                    inline: "start",
-                    block: "nearest",
                 })
             }
         }

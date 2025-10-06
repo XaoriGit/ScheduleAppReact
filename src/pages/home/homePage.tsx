@@ -22,6 +22,7 @@ export const HomePage = () => {
     return (
         <div className={styles.main}>
             <Header
+                className={styles.header}
                 title="Расписание"
                 status={status}
                 text={
