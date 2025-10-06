@@ -11,7 +11,16 @@ export default defineConfig({
         react(),
         VitePWA({
             registerType: "autoUpdate",
-            workbox: { globPatterns: ["**/*{html,css,js,ico,png,svg}"] },
+            srcDir: "src",
+            filename: "sw.ts",
+            strategies: "injectManifest",
+            injectManifest: {
+                globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2}"],
+            },
+            devOptions: {
+                enabled: true,
+                type: "module",
+            },
             manifest: {
                 theme_color: "#405F90",
                 background_color: "#F9F9FF",

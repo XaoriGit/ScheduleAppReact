@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"
 import { SettingsPage } from "@/pages/settings/settingsPage"
 import { useOnboardingStore } from "@/store/OnboardingStore"
 import styles from "./onboardingWrapper.module.scss"
+import { AllowNotificationScreen } from "../allowNotificationScreen/allowNotificationScreen"
 
 export interface OnboardingScreenProps {
     onNext: () => void
@@ -31,9 +32,12 @@ export const OnboardingWrapper = () => {
                     <ChooseClientScreen onNext={() => setCurrentStep(1)} />
                 )}
                 {currentStep === 1 && (
+                    <AllowNotificationScreen onNext={() => setCurrentStep(2)} />
+                )}
+                {currentStep === 2 && (
                     <SettingsPage
                         callbackOnSelect={() => {
-                            setCurrentStep(2)
+                            setCurrentStep(3)
                             passOnboarding()
                             navigate("/")
                         }}

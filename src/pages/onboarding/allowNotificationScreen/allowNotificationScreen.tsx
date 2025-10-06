@@ -1,13 +1,22 @@
 import { Button } from "@/components"
 import type { OnboardingScreenProps } from "../onboardingWrapper/onboardingWrapper"
-import { useState } from "react"
+import { usePushNotifications } from "@/hooks/usePushNotifications"
+import { useToastStore } from "@/store/ToastStore"
 
 export const AllowNotificationScreen = ({ onNext }: OnboardingScreenProps) => {
-    const [permission, setPermission] = useState(Notification.permission)
+    const { addToast } = useToastStore()
+    const { isSupported, subscribeToPush, isSubscribed } =
+        usePushNotifications()
 
-    const requestPermission = async () => {
-        const permission = await Notification.requestPermission()
-        setPermission(permission)
+    const handlePushPermission = async () => {
+        try {
+            await subscribeToPush()
+            onNext()
+        } catch (err) {
+            console.error(err)
+            if (err instanceof Error)
+                addToast({ message: err.message, type: "error" })
+        }
     }
 
     return (
@@ -18,23 +27,19 @@ export const AllowNotificationScreen = ({ onNext }: OnboardingScreenProps) => {
                     <h2>Оповещения</h2>
                     <p>Дай засирать тебе фид оповещений</p>
                     <div>
-                        {permission === "denied" ? (
-                            <p>Вам необходимо сбросить настройки оповещений</p>
-                        ) : (
+                        {isSupported ? (
                             <Button
-                                disabled={permission === "granted"}
-                                onClick={requestPermission}
+                                disabled={isSubscribed}
+                                onClick={handlePushPermission}
                             >
-                                {permission === "granted"
-                                    ? "Оповещения включены"
-                                    : "Разрешить оповещения"}
+                                {!isSubscribed
+                                    ? "Разрешить оповещения"
+                                    : "Оповещения разрешены"}
                             </Button>
+                        ) : (
+                            <p>Ваш браузер не поддерживает оповещения</p>
                         )}
-                        <Button onClick={onNext}>
-                            {permission === "granted"
-                                ? "Продолжить"
-                                : "Пропустить"}
-                        </Button>
+                        <Button onClick={onNext}>Пропустить</Button>
                     </div>
                 </div>
             </div>
