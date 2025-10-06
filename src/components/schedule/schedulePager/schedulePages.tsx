@@ -32,7 +32,7 @@ export const SchedulePager = ({
     return (
         <Swiper
             modules={[Pagination]}
-            spaceBetween={16}
+            // spaceBetween={16}
             onSlideChange={(swiper) => setSelectedIndex(swiper.activeIndex)}
             initialSlide={selectedIndex}
             ref={swiperRef}

@@ -5,13 +5,13 @@ import { Button } from "@/components"
 
 export const ChooseClientScreen = ({ onNext }: OnboardingScreenProps) => {
     return (
-        <>
+        <div className={styles.box}>
             <EducationSvg className={styles.education} />
             <div>
                 <h2 className={styles.heading}>Добро пожаловать!</h2>
                 <p className={styles.info}>Сначала нужно сделать важный выбор</p>
             </div>
             <Button size="small" onClick={onNext}>Выбрать расписание</Button>
-        </>
+        </div>
     )
 }
