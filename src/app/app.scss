@@ -5,6 +5,7 @@ body {
   color: var(--on-surface);
   padding: 16px 0px;
   height: calc(100vh - 32px);
+  user-select: none;
 }
 #root {
   height: 100%;
