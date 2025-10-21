@@ -42,26 +42,22 @@ export const SchedulePager = ({
                 <SwiperSlide key={index}>
                     <div className={styles.schedule_list}>
                         {day.lessons.length > 0 ? (
-                            day.lessons.map((lesson, index) => (
-                                <>
+                            <>
+                                {day.lessons.map((lesson, index) => (
                                     <Lesson
                                         key={index}
                                         number={lesson.number}
                                         time={lesson.time}
                                         items={lesson.items}
                                     />
-                                    {index == day.lessons.length - 1 && (
-                                        <div className={styles.update}>
-                                            Обновлено
-                                            <span
-                                                className={styles.update__date}
-                                            >
-                                                {formatTimeUpdate(last_updated)}
-                                            </span>
-                                        </div>
-                                    )}
-                                </>
-                            ))
+                                ))}
+                                <div className={styles.update}>
+                                    Обновлено
+                                    <span className={styles.update__date}>
+                                        {formatTimeUpdate(last_updated)}
+                                    </span>
+                                </div>
+                            </>
                         ) : (
                             <ScheduleDayEmpty />
                         )}
