@@ -8,19 +8,20 @@ interface ToastStore {
     clearAll: () => void
 }
 
-export const useToastStore = create<ToastStore>((set) => ({
+export const useToastStore = create<ToastStore>((set, get) => ({
     toasts: [],
     addToast: (toast) => {
-        set((state) => ({
-            toasts: [
-                ...state.toasts,
-                {
-                    id: crypto.randomUUID(),
-                    duration: toast.duration || 4000,
-                    ...toast,
-                },
-            ],
-        }))
+        !get().toasts.some((t) => t.message === toast.message) &&
+            set((state) => ({
+                toasts: [
+                    ...state.toasts,
+                    {
+                        id: crypto.randomUUID(),
+                        duration: toast.duration || 5000,
+                        ...toast,
+                    },
+                ],
+            }))
     },
     removeToast: (id) =>
         set((state) => ({

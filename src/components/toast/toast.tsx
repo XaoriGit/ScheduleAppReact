@@ -28,7 +28,7 @@ const Toast = (toast: ToastProps) => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setTimeout(() => removeToast(toast.id), 300)
+            removeToast(toast.id)
         }, toast.duration)
         return () => clearTimeout(timer)
     }, [toast.id, toast.duration, removeToast])

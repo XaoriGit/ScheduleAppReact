@@ -9,6 +9,10 @@
 /* Toast Block */
 .toast {
     display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     align-items: flex-start;
     gap: 12px;
     min-width: 320px;
@@ -22,7 +26,6 @@
         0 4px 6px -2px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     opacity: 1;
-    transform: translateX(0);
 }
 
 /* Toast Modifiers */

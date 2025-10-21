@@ -1,7 +1,7 @@
 import { useSchedule } from "@/api"
 import { CircleLoader, Header, SchedulePager } from "@/components"
 import { WeekDayRow } from "@/components/schedule/weekDayRow/weekDayRow"
-import { useState } from "react"
+import {  useState } from "react"
 import styles from "./homePage.module.scss"
 import SettingsSvg from "@/assets/ic_settings.svg?react"
 import { useNavigate } from "react-router-dom"
@@ -36,19 +36,21 @@ export const HomePage = () => {
             {isLoading ? (
                 <CircleLoader />
             ) : (
-                <>
-                    <WeekDayRow
-                        days={data!.schedules}
-                        selectedIndex={selectedIndex}
-                        onDayClick={(index) => setSelectedIndex(index)}
-                    />
-                    <SchedulePager
-                        days={data!.schedules}
-                        last_updated={data!.last_update}
-                        selectedIndex={selectedIndex}
-                        setSelectedIndex={setSelectedIndex}
-                    />
-                </>
+                data && (
+                    <>
+                        <WeekDayRow
+                            days={data.schedules}
+                            selectedIndex={selectedIndex}
+                            onDayClick={(index) => setSelectedIndex(index)}
+                        />
+                        <SchedulePager
+                            days={data.schedules}
+                            last_updated={data!.last_update}
+                            selectedIndex={selectedIndex}
+                            setSelectedIndex={setSelectedIndex}
+                        />
+                    </>
+                )
             )}
             {error && <>ОШИБКА {error.message}</>}
         </div>
