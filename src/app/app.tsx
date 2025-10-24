@@ -16,12 +16,16 @@ import { useOnboardingStore } from "@/store/OnboardingStore"
 function ProtectedRoutes() {
     const { passedOnboarding } = useOnboardingStore()
     const navigate = useNavigate()
+    const isReady =
+        passedOnboarding || window.location.pathname === "/onboarding"
 
     useEffect(() => {
         if (!passedOnboarding && window.location.pathname !== "/onboarding") {
             navigate("/onboarding")
         }
     }, [passedOnboarding, navigate])
+
+    if (!isReady) return null
 
     return <Outlet />
 }
