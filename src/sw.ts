@@ -2,7 +2,7 @@
 
 import { precacheAndRoute } from "workbox-precaching"
 import { registerRoute } from "workbox-routing"
-import { NetworkFirst } from "workbox-strategies"
+import { NetworkFirst, NetworkOnly } from "workbox-strategies"
 import { ExpirationPlugin } from "workbox-expiration"
 import { CacheableResponsePlugin } from "workbox-cacheable-response"
 import { clientsClaim } from "workbox-core"
@@ -18,7 +18,14 @@ declare const self: ServiceWorkerGlobalScope & {
 precacheAndRoute(self.__WB_MANIFEST)
 
 registerRoute(
-    ({ url }) => url.href.startsWith("https://app.omsktec.ru/api/schedule"),
+    ({ url }) => url.pathname.match(/workbox-.*\.js$/),
+    new NetworkOnly(),
+)
+
+registerRoute(
+    ({ url }) =>
+        url.origin === "https://app.omsktec.ru" &&
+        url.pathname.startsWith("/api/schedule"),
     new NetworkFirst({
         cacheName: "api-cache",
         networkTimeoutSeconds: 3,
