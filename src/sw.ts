@@ -11,6 +11,12 @@ import { skipWaiting } from "workbox-core"
 skipWaiting()
 clientsClaim()
 
+self.addEventListener("message", (event) => {
+    if (event.data && event.data.type === "SKIP_WAITING") {
+        self.skipWaiting()
+    }
+})
+
 declare const self: ServiceWorkerGlobalScope & {
     __WB_MANIFEST: Array<{ url: string; revision: string | null }>
 }
