@@ -5,6 +5,11 @@ import { registerRoute } from "workbox-routing"
 import { NetworkFirst } from "workbox-strategies"
 import { ExpirationPlugin } from "workbox-expiration"
 import { CacheableResponsePlugin } from "workbox-cacheable-response"
+import { clientsClaim } from "workbox-core"
+import { skipWaiting } from "workbox-core"
+
+skipWaiting()
+clientsClaim()
 
 declare const self: ServiceWorkerGlobalScope & {
     __WB_MANIFEST: Array<{ url: string; revision: string | null }>
