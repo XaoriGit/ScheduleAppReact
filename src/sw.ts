@@ -13,7 +13,7 @@ declare const self: ServiceWorkerGlobalScope & {
 precacheAndRoute(self.__WB_MANIFEST)
 
 registerRoute(
-    ({ url }) => url.href.startsWith("https://app.omsktec.ru/api"),
+    ({ url }) => url.href.startsWith("https://app.omsktec.ru/api/schedule"),
     new NetworkFirst({
         cacheName: "api-cache",
         networkTimeoutSeconds: 3,
