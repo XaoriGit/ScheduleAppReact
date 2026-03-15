@@ -26,7 +26,7 @@ export const Lesson = ({ number, time, items }: LessonDTO) => {
                                 </span>
                             )}
                         </div>
-                        <span className={styles.lesson__details__primary}>
+                        <span className={styles.lesson__details__tertiary}>
                             {item.partner}
                         </span>
                     </div>

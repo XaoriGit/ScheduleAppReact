@@ -7,7 +7,7 @@ $font-primary: 'Roboto', sans-serif;
     font-family: $font-primary;
     font-size: 45px;
     font-weight: 400;
-    line-height: 150%;
+    line-height: 125%;
 }
 
 // Title
@@ -15,19 +15,19 @@ $font-primary: 'Roboto', sans-serif;
     font-family: $font-primary;
     font-size: 22px;
     font-weight: 400;
-    line-height: 150%;
+    line-height: 125%;
 }
 @mixin font-title-medium {
     font-family: $font-primary;
     font-size: 16px;
     font-weight: 500;
-    line-height: 150%;
+    line-height: 125%;
 }
 @mixin font-title-small {
     font-family: $font-primary;
     font-size: 14px;
     font-weight: 500;
-    line-height: 150%;
+    line-height: 125%;
 }
 
 // Label
@@ -35,7 +35,7 @@ $font-primary: 'Roboto', sans-serif;
     font-family: $font-primary;
     font-size: 14px;
     font-weight: 500;
-    line-height: 150%;
+    line-height: 125%;
 }
 
 // Body
@@ -43,19 +43,19 @@ $font-primary: 'Roboto', sans-serif;
     font-family: $font-primary;
     font-size: 15px;
     font-weight: 400;
-    line-height: 150%;
+    line-height: 125%;
     letter-spacing: 0.5;
 }
 @mixin font-body-medium {
     font-family: $font-primary;
     font-size: 14px;
     font-weight: 400;
-    line-height: 150%;
+    line-height: 125%;
 }
 @mixin font-body-small {
     font-family: $font-primary;
     font-size: 12px;
     font-weight: 400;
-    line-height: 150%;
+    line-height: 125%;
     letter-spacing: 0.4;
 }
