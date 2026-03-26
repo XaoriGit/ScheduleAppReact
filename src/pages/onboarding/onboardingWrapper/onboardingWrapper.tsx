@@ -1,9 +1,9 @@
-import { useState } from "react"
-// import { AllowNotificationScreen } from "../allowNotificationScreen/allowNotificationScreen"
 import { ChooseClientScreen } from "../chooseClientScreen/chooseClientScreen"
 import { useNavigate } from "react-router-dom"
-import { SettingsPage } from "@/pages/settings/settingsPage"
-import { useOnboardingStore } from "@/store/OnboardingStore"
+import { ClientChoice } from "@/pages/clientChoice/clientChoice"
+import { useClientStore } from "@/store/ClientStore"
+import { useBottomSheet } from "@/components/common/bottomSheet/useBottomSheet"
+import { BottomSheet } from "@/components/common/bottomSheet/BottomSheet"
 
 export interface OnboardingScreenProps {
     onNext: () => void
@@ -11,11 +11,12 @@ export interface OnboardingScreenProps {
 
 export const OnboardingWrapper = () => {
     const navigate = useNavigate()
-    const { passOnboarding } = useOnboardingStore()
-    const [currentStep, setCurrentStep] = useState(0)
-
-    // const totalSteps = 2
-    // const progress = (currentStep / (totalSteps - 1)) * 100
+    const sheet = useBottomSheet()
+    const {
+        passOnboarding,
+        completedOnBoardingSteps,
+        setCompletedOnBoardingSteps,
+    } = useClientStore()
 
     return (
         <>
@@ -26,20 +27,32 @@ export const OnboardingWrapper = () => {
                 />
             </div> */}
             <>
-                {currentStep === 0 && (
-                    <ChooseClientScreen onNext={() => setCurrentStep(1)} />
-                )}
-                {currentStep === 1 && (
-                    <SettingsPage
-                        callbackOnSelect={() => {
-                            setCurrentStep(2)
-                            passOnboarding()
-                            navigate("/")
-                        }}
-                        showCancel={false}
+                {completedOnBoardingSteps === 0 && <>
+                    <ChooseClientScreen
+                        onNext={() => sheet.open()}
                     />
+                    <BottomSheet
+                        isOpen={sheet.isOpen}
+                        onClose={sheet.close}
+                        size="full"
+                        draggable
+                    >
+                        <ClientChoice
+                            callbackOnSelect={() => {
+                                setCompletedOnBoardingSteps(1)
+                                passOnboarding()
+                                navigate("/")
+                                sheet.close()
+                            }}
+                            showCancel={false}
+                        />
+                    </BottomSheet>
+                    </>
+                }
+                {/*{completedOnBoardingSteps === 1 && (
+                    
                 )}
-                {/* {currentStep === 2 && (
+                 {currentStep === 2 && (
                     <AllowNotificationScreen
                         onNext={() => {
                             passOnboarding()

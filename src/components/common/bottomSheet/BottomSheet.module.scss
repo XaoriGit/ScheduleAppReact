@@ -1,0 +1,129 @@
+// ─── Root overlay ────────────────────────────────────────────────────────────
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  pointer-events: none;
+
+  // Activate pointer events only when visible
+  &.visible {
+    pointer-events: auto;
+  }
+}
+
+// ─── Scrim ───────────────────────────────────────────────────────────────────
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(var(--scrim), 0);
+  transition: background 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .visible & {
+    background: rgba(0, 0, 0, 0.48);
+    cursor: pointer;
+  }
+}
+
+// ─── Sheet ───────────────────────────────────────────────────────────────────
+.sheet {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 0 auto;
+
+  background: var(--surface-container-low);
+  border-radius: 28px 28px 0 0;
+  box-shadow:
+    0 8px 10px -5px rgba(0, 0, 0, 0.2),
+    0 16px 24px 2px rgba(0, 0, 0, 0.14),
+    0 6px 30px 5px rgba(0, 0, 0, 0.12);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  // Slide-up enter animation
+  transform: translateY(100%);
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .visible & {
+    transform: translateY(0);
+  }
+
+  // Disable height transition while actively dragging for responsiveness
+  &.dragging {
+    transition: none;
+    user-select: none;
+    touch-action: none;
+  }
+}
+
+// ─── Drag handle area ────────────────────────────────────────────────────────
+.handleArea {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 0px;
+  cursor: grab;
+  touch-action: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.handle {
+  display: block;
+  width: 32px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--outline-variant);
+  transition: background 0.2s ease, transform 0.2s ease;
+
+  .handleArea:hover & {
+    background: var(--outline);
+    transform: scaleX(1.15);
+  }
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+.header {
+  flex-shrink: 0;
+  padding: 4px 24px 12px;
+}
+
+.title {
+  @include font-title-large;
+  margin: 0;
+  color: var(--on-surface);
+}
+
+// ─── Scrollable content ──────────────────────────────────────────────────────
+.content {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  // Custom scrollbar — minimal, theme-aware
+  scrollbar-width: thin;
+  scrollbar-color: var(--outline-variant) transparent;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--outline-variant);
+    border-radius: 2px;
+  }
+}

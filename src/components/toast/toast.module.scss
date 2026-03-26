@@ -1,13 +1,6 @@
-/* Toast Container */
-.toast-container {
-    position: fixed;
-    top: 24px;
-    right: 24px;
-    z-index: 9999;
-}
-
 /* Toast Block */
 .toast {
+    z-index: 9999;
     display: flex;
     position: absolute;
     bottom: 0;

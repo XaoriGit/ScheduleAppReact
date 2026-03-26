@@ -7,10 +7,11 @@ interface HeaderProps {
     text?: string
     status: "loading" | "error" | "success"
     rightContent?: ReactNode
+    onTextClick: () => void
     onRightContent: () => void
 }
 
-export const Header = ({ className = "", title, text, status, rightContent, onRightContent }: HeaderProps) => {
+export const Header = ({ className = "", title, text, status, rightContent, onTextClick, onRightContent }: HeaderProps) => {
     const [displayedStatus, setDisplayedStatus] = useState(status)
     const [animating, setAnimating] = useState(false)
 
@@ -42,7 +43,7 @@ export const Header = ({ className = "", title, text, status, rightContent, onRi
                 <div className={styles.header__info}>
                     <h1>{title}</h1>
                     <div
-                        onClick={() => onRightContent()}
+                        onClick={() => onTextClick()}
                         className={`${styles.header__textWrapper} ${
                             animating ? styles.fadeOut : styles.fadeIn
                         }`}

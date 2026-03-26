@@ -1,3 +1,5 @@
 export * from "./filledTextField/filledTextField"
 export * from "./circleLoader/circleLoader"
-export * from './button/button'
+export * from "./button/button"
+export * from "./bottomSheet/BottomSheet"
+export * from "./bottomSheet/useBottomSheet"
