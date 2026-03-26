@@ -11,7 +11,7 @@ import { useState } from "react"
 import styles from "./homePage.module.scss"
 import SettingsSvg from "@/assets/ic_settings.svg?react"
 import { useNavigate } from "react-router-dom"
-import { ClientChoice } from "../clientChoice/clientChoice"
+import { ClientChoice } from "@/pages"
 import { useClientStore } from "@/store/ClientStore"
 
 export const HomePage = () => {

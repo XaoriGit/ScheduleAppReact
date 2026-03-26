@@ -5,13 +5,14 @@ import {
     Outlet,
     useNavigate,
 } from "react-router-dom"
-import { HomePage } from "@/pages"
+import { HomePage, SettingsPage } from "@/pages"
 import "./app.scss"
 import Toast from "@/components/toast/toast"
 import { useToastStore } from "@/store/ToastStore"
 import { OnboardingWrapper } from "@/pages/onboarding"
 import { useEffect } from "react"
 import { useClientStore } from "@/store/ClientStore"
+import { useTheme } from "@/store/"
 
 function ProtectedRoutes() {
     const { passedOnboarding } = useClientStore()
@@ -31,6 +32,7 @@ function ProtectedRoutes() {
 }
 
 function App() {
+    useTheme()
     const { toasts } = useToastStore((state) => state)
 
     return (
@@ -43,7 +45,7 @@ function App() {
                             element={<OnboardingWrapper />}
                         />
                         <Route path="/" element={<HomePage />} />
-                        {/* <Route path="/settings" element={() => {}} /> */}
+                        <Route path="/settings" element={<SettingsPage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>

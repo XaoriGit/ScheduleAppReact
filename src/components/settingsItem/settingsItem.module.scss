@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    transition: background 200ms ease;
+}
+
+.clickable {
+    cursor: pointer;
+
+    &:active {
+        background: var(--surface-variant);
+    }
+}
+
+.leftContent {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    color: var(--on-surface-variant);
+}
+
+.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.title {
+    @include font-title-medium;
+    color: var(--on-surface);
+    margin: 0;
+}
+
+.description {
+    @include font-body-medium;
+    color: var(--on-surface-variant);
+    margin: 0;
+}
+
+.rightContent {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    color: var(--on-surface-variant);
+}

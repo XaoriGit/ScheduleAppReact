@@ -1,0 +1,73 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0 16px;
+    cursor: pointer;
+
+    & h1 {
+        @include font-title-large;
+        color: var(--on-surface);
+    }
+}
+
+.content {
+    &__line {
+        margin: unset;
+        color: var(--outline-variant);
+    }
+}
+
+.alert {
+    &__button {
+        @include font-label-large;
+        color: var(--primary);
+        cursor: pointer;
+    }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 10px 8px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 200ms ease;
+
+    &:active {
+        background: var(--surface-variant);
+    }
+}
+
+.label {
+    @include font-body-large;
+    color: var(--on-surface);
+}
+
+.button {
+    @include font-label-large;
+    background: none;
+    border: none;
+    color: var(--primary);
+    padding: 8px 12px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 200ms ease;
+
+    &:active {
+        background: var(--surface-variant);
+    }
+}
