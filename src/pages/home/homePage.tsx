@@ -7,12 +7,13 @@ import {
     useBottomSheet,
 } from "@/components"
 import { WeekDayRow } from "@/components/schedule/weekDayRow/weekDayRow"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./homePage.module.scss"
 import SettingsSvg from "@/assets/ic_settings.svg?react"
 import { useNavigate } from "react-router-dom"
 import { ClientChoice } from "@/pages"
 import { useClientStore } from "@/store/ClientStore"
+import { translateError } from "@/api/axios.ts"
 
 export const HomePage = () => {
     const { selectedClient } = useClientStore()
@@ -27,6 +28,28 @@ export const HomePage = () => {
           ? "loading"
           : "success"
 
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (!data) return
+            if (e.key === "ArrowLeft" && !sheet.isOpen) {
+                setSelectedIndex(i => Math.max(0, i - 1))
+            }
+            if (e.key === "ArrowRight" && !sheet.isOpen) {
+                setSelectedIndex(i => Math.min(data.schedules.length - 1, i + 1))
+            }
+
+            if (e.key === "ArrowUp") {
+                sheet.open()
+            }
+            if (e.key === "Escape") {
+                sheet.close()
+            }
+        }
+
+        window.addEventListener("keydown", handleKeyDown)
+        return () => window.removeEventListener("keydown", handleKeyDown)
+    }, [data, sheet.isOpen])
+
     return (
         <>
             <div className={styles.main}>
@@ -36,7 +59,7 @@ export const HomePage = () => {
                     status={status}
                     text={
                         status == "error"
-                            ? error?.message
+                            ? translateError(error)
                             : `для ${data?.client_name}`
                     }
                     rightContent={<SettingsSvg className="icon" />}
@@ -62,7 +85,9 @@ export const HomePage = () => {
                         </>
                     )
                 )}
-                {error && <>ОШИБКА {error.message}</>}
+                {error && <div className={styles.error}>
+                    {translateError(error)}
+                </div>}
             </div>
             <BottomSheet
                 isOpen={sheet.isOpen}

@@ -8,3 +8,12 @@
 .header {
     padding: 0px 16px;
 }
+
+.error {
+    @include font-title-small;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}

@@ -43,7 +43,7 @@ export const Header = ({ className = "", title, text, status, rightContent, onTe
                 <div className={styles.header__info}>
                     <h1>{title}</h1>
                     <div
-                        onClick={() => onTextClick()}
+                        onClick={() => status != "loading" && onTextClick()}
                         className={`${styles.header__textWrapper} ${
                             animating ? styles.fadeOut : styles.fadeIn
                         }`}

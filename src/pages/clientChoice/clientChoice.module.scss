@@ -26,5 +26,8 @@
         &:active {
             background-color: var(--surface-variant);
         }
+        &_hovered {
+            background-color: var(--surface-variant);
+        }
     }
 }

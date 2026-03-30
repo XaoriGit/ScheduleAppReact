@@ -8,12 +8,12 @@ interface FilledTextFieldProps {
     type?: string
 }
 
-export const FilledTextField = ({
-    label,
-    value,
-    onChange,
-    type = "text",
-}: FilledTextFieldProps) => {
+import { forwardRef } from "react"
+
+export const FilledTextField = forwardRef<
+    HTMLInputElement,
+    FilledTextFieldProps
+>(({ label, value, onChange, type = "text" }, ref) => {
     const [focused, setFocused] = useState(false)
 
     const handleFocus = (_e: FocusEvent<HTMLInputElement>) => setFocused(true)
@@ -25,6 +25,7 @@ export const FilledTextField = ({
         >
             <label className={styles.label}>{label}</label>
             <input
+                ref={ref}
                 className={styles.input}
                 type={type}
                 value={value}
@@ -34,4 +35,4 @@ export const FilledTextField = ({
             />
         </div>
     )
-}
+})

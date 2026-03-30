@@ -5,6 +5,7 @@ export const useSchedule = (clientName: string) => {
     return useQuery({
         queryKey: ["schedule", clientName],
         queryFn: () => scheduleApi.getSchedule(clientName),
+        retry: false
     })
 }
 

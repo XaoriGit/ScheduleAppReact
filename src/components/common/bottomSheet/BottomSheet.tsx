@@ -59,17 +59,13 @@ export const BottomSheet = ({
     const dragStartY = useRef(0)
     const dragStartHeight = useRef(0)
 
-    // Sync size prop → currentSize when sheet opens
     useEffect(() => {
         if (isOpen) setCurrentSize(size)
     }, [isOpen, size])
 
-    // Mount/unmount with animation
     useEffect(() => {
         if (isOpen) {
             setMounted(true)
-            // setTimeout гарантирует что браузер успел отрисовать начальный
-            // translateY(100%) до добавления класса .visible с transition
             const timer = setTimeout(() => setVisible(true), 16)
             return () => clearTimeout(timer)
         } else {

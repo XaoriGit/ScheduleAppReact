@@ -5,7 +5,7 @@ import WarningSvg from "@/assets/ic_warning.svg?react"
 import CancelSvg from "@/assets/ic_cancel.svg?react"
 import styles from "./toast.module.scss"
 import { useToastStore } from "@/store/ToastStore"
-import { useEffect } from "react"
+import React, { useEffect } from "react"
 import type { UUID } from "@/utils"
 
 export interface ToastProps {
