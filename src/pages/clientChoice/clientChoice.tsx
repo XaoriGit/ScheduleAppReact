@@ -107,7 +107,7 @@ export const ClientChoice = ({ callbackOnSelect }: ClientChoiceProps) => {
                     {filteredList.length > 0 ? (
                         filteredList.map((item, index) => (
                             <li
-                                ref={el => itemRefs.current[index] = el}
+                                ref={el => { itemRefs.current[index] = el }}
                                 className={`${styles.client_list__item} ${hoveredIndex === index ? styles.client_list__item_hovered : ""}`}
                                 onClick={() => {
                                     setSelectedClient(item)
