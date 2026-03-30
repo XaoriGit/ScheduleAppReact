@@ -1,0 +1,47 @@
+.page {
+    height: calc(100vh - 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
+}
+
+.code {
+    @include font-display-medium;
+    font-size: 96px;
+    font-weight: 300;
+    color: var(--primary);
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.title {
+    @include font-title-large;
+    color: var(--on-surface);
+}
+
+.subtitle {
+    @include font-body-large;
+    color: var(--on-surface-variant);
+    margin-bottom: 16px;
+}
+
+.button {
+    @include font-label-large;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--on-primary);
+    transition: opacity 150ms ease;
+
+    &:active {
+        opacity: 0.8;
+    }
+}

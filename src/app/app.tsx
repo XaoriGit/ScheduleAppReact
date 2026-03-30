@@ -5,7 +5,7 @@ import {
     Outlet,
     useNavigate,
 } from "react-router-dom"
-import { HomePage, SettingsPage } from "@/pages"
+import { HomePage, NotFoundPage, SettingsPage } from "@/pages"
 import "./app.scss"
 import Toast from "@/components/toast/toast"
 import { useToastStore } from "@/store/ToastStore"
@@ -40,12 +40,10 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route element={<ProtectedRoutes />}>
-                        <Route
-                            path="/onboarding"
-                            element={<OnboardingWrapper />}
-                        />
+                        <Route path="/onboarding" element={<OnboardingWrapper />} />
                         <Route path="/" element={<HomePage />} />
                         <Route path="/settings" element={<SettingsPage />} />
+                        <Route path="*" element={<NotFoundPage />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
