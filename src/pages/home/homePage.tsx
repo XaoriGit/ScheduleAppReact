@@ -60,7 +60,7 @@ export const HomePage = () => {
                     text={
                         status == "error"
                             ? translateError(error)
-                            : `для ${data?.client_name}`
+                            : `${data?.client_name}`
                     }
                     rightContent={<SettingsSvg className="icon" />}
                     onTextClick={sheet.open}
