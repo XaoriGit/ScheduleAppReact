@@ -1,7 +1,10 @@
 import type { LessonDTO } from "@/api"
 import styles from "./lesson.module.scss"
+import { useClientStore } from "@/store"
 
 export const Lesson = ({ number, time, items }: LessonDTO) => {
+    const { setSelectedClient } = useClientStore()
+
     return (
         <ul className={styles.lesson}>
             {items.flatMap((item, index) => [
@@ -26,7 +29,9 @@ export const Lesson = ({ number, time, items }: LessonDTO) => {
                                 </span>
                             )}
                         </div>
-                        <span className={styles.lesson__details__tertiary}>
+                        <span className={styles.lesson__details__tertiary} onClick={() => {
+                            setSelectedClient(item.partner)
+                        }}>
                             {item.partner}
                         </span>
                     </div>

@@ -42,12 +42,13 @@
         &__tertiary {
             background-color: var(--tertiary);
             color: var(--on-tertiary);
+            cursor: pointer;
         }
     }
 
     &__divider {
         height: 1px;
         background-color: var(--outline-variant);
-        margin: 8px 0px;
+        margin: 8px 0;
     }
 }
