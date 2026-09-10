@@ -72,7 +72,7 @@ export const ClientChoice = ({ callbackOnSelect }: ClientChoiceProps) => {
 
         window.addEventListener("keydown", handleKeyDown)
         return () => window.removeEventListener("keydown", handleKeyDown)
-    }, [data, activeList, isSearching])
+    }, [data, isSearching])
 
     const handleSelect = (item: string) => {
         setSelectedClient(item)

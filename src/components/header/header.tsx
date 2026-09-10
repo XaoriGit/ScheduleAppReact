@@ -27,12 +27,12 @@ export const Header = ({ className = "", title, text, status, rightContent, onTe
     }, [status, displayedStatus])
 
     const renderText = () => {
-        switch (displayedStatus) {
-            case "loading":
+        switch (status) {
+            case 'loading':
                 return <p className={styles.header_loading}>Загрузка...</p>
-            case "error":
+            case 'error':
                 return <p className={styles.header_error}>{text}</p>
-            case "success":
+            default:
                 return <p className={styles.header_success}>{text}</p>
         }
     }
