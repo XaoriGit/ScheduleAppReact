@@ -4,9 +4,10 @@ import type { ScheduleDayDTO } from "@/api"
 import { Lesson } from "../lesson/lesson"
 import styles from "./schedulePager.module.scss"
 import "swiper/swiper.css"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { ScheduleDayEmpty } from "@/components"
 import { formatTimeUpdate } from "@/utils"
+import { useToastStore } from "@/store"
 
 interface SchedulePagerProps {
     days: ScheduleDayDTO[]
@@ -21,13 +22,29 @@ export const SchedulePager = ({
     selectedIndex,
     setSelectedIndex,
 }: SchedulePagerProps) => {
-    const swiperRef = useRef<null | SwiperRef>(null)
+	const swiperRef = useRef<null | SwiperRef>(null)
+	const [devCounter, setDevCounter] = useState(0);
+
+	const incrementDevCounter = () => {
+		setDevCounter((prev) => prev + 1)
+	}
 
     useEffect(() => {
         if (swiperRef.current && swiperRef.current.swiper) {
             swiperRef.current.swiper.slideTo(selectedIndex)
         }
-    }, [selectedIndex])
+	}, [selectedIndex])
+
+	useEffect(() => {
+		if (devCounter == 7) {
+			useToastStore.getState().addToast({ message: "Вы стали разработчиком!", type: "info", duration: 2000 })
+		} else if (devCounter > 4 && devCounter < 7) {
+			useToastStore.getState().addToast({ message: `Осталось ${7 - devCounter} шагов до включения режима разработчика`, type: "info", duration: 2000 })
+		} else if (devCounter > 7) {
+			useToastStore.getState().addToast({ message: "Вы уже стали разработчиком!", type: "info", duration: 2000 })
+		}
+
+ }, [devCounter])
 
     return (
         <Swiper
@@ -53,7 +70,7 @@ export const SchedulePager = ({
                                 ))}
                                 <div className={styles.update}>
                                     Обновлено
-                                    <span className={styles.update__date}>
+                                    <span className={styles.update__date} onClick={incrementDevCounter}>
                                         {formatTimeUpdate(last_updated)}
                                     </span>
                                 </div>

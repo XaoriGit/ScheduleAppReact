@@ -11,26 +11,31 @@ interface HeaderProps {
     onRightContent: () => void
 }
 
-export const Header = ({ className = "", title, text, status, rightContent, onTextClick, onRightContent }: HeaderProps) => {
-    const [displayedStatus, setDisplayedStatus] = useState(status)
+export const Header = ({
+    className = "",
+    title,
+    text,
+    status,
+    rightContent,
+    onTextClick,
+    onRightContent,
+}: HeaderProps) => {
     const [animating, setAnimating] = useState(false)
 
-    useEffect(() => {
-        if (status !== displayedStatus) {
-            setAnimating(true)
-            const timeout = setTimeout(() => {
-                setDisplayedStatus(status)
-                setAnimating(false)
-            }, 150)
-            return () => clearTimeout(timeout)
-        }
-    }, [status, displayedStatus])
+	useEffect(() => {
+		console.log("render!", status)
+		setAnimating(true)
+        const timeout = setTimeout(() => {
+            setAnimating(false)
+        }, 150)
+        return () => clearTimeout(timeout)
+    }, [status])
 
     const renderText = () => {
         switch (status) {
-            case 'loading':
+            case "loading":
                 return <p className={styles.header_loading}>Загрузка...</p>
-            case 'error':
+            case "error":
                 return <p className={styles.header_error}>{text}</p>
             default:
                 return <p className={styles.header_success}>{text}</p>
@@ -52,7 +57,10 @@ export const Header = ({ className = "", title, text, status, rightContent, onTe
                     </div>
                 </div>
                 {rightContent && (
-                    <button className={styles.header__left_content} onClick={() => onRightContent()}>
+                    <button
+                        className={styles.header__left_content}
+                        onClick={() => onRightContent()}
+                    >
                         {rightContent}
                     </button>
                 )}

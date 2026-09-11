@@ -29,5 +29,6 @@
     &__date {
         @include font-label-large;
         color: var(--primary);
+        cursor: pointer;
     }
 }
